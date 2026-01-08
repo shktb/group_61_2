@@ -1,20 +1,22 @@
 import flet as ft
+from datetime import datetime
 
 
 def main(page: ft.Page):
     page.title = 'Моё первое приложение'
     page.theme_mode = ft.ThemeMode.SYSTEM
-    text_hello = ft.Text(value="Hello world!", color=ft.Colors.RED_900)
 
-    # text_button = ft.TextButton("SEND")
-    # icon_button = ft.IconButton(icon=ft.Icons.SEND)
+
+    text_hello = ft.Text(value="Hello world!")
+
 
     def text_name(e):
-        # print(name_input.value)
+
         name = name_input.value.strip()
+        now = datetime.now().strftime("%Y:%m:%d - %H:%M:%S")
 
         if name:
-            text_hello.value = f'Hello {name}'
+            text_hello.value = f'{now} - Привет, {name}!'
             text_hello.color = None
             
         else:
@@ -33,14 +35,14 @@ def main(page: ft.Page):
 
 
 
-    elevated_button = ft.ElevatedButton('send', on_click=text_name)
+    elevated_button = ft.ElevatedButton('send', on_click=text_name, icon=ft.Icons.SEND)
 
 
-    name_input = ft.TextField(label='Введите что-нибудь')
+    name_input = ft.TextField(label='Введите ваше имя', on_submit=text_name)
 
 
 
-    page.add(text_hello, name_input, elevated_button, thememode_button)
+    page.add(name_input, elevated_button, text_hello, thememode_button)
 
 
 ft.app(target=main, view=ft.AppView.WEB_BROWSER)
