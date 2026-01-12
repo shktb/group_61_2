@@ -48,7 +48,7 @@ def main(page: ft.Page):
         else:
             history_text.value = 'История приветствий:\n История пуста!'
 
-    delete_button = ft.ElevatedButton('Delete name', on_click=delete_name, icon=ft.Icons.DELETE_OUTLINE)
+    delete_button = ft.ElevatedButton('Удалить последнее', on_click=delete_name, icon=ft.Icons.DELETE_OUTLINE)
 
 
 
@@ -69,4 +69,4 @@ def main(page: ft.Page):
     page.add(text_hello, main_object, history_text)
 
 
-ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+ft.app(target=main)
